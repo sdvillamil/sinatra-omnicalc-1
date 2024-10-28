@@ -40,6 +40,10 @@ get("/payment/results") do
   @the_result = @the_principal * (month_payment * (1 + month_payment) ** total_bills) / ((1 + month_payment) ** total_bills - 1)
   @the_result = @the_result.round(2)
 
+  @format_apr = "#{@the_apr}%"
+  @format_result = @the_result.to_fs(:currency)
+  @format_principal = @the_principal.to_fs(:currency)
+
   erb(:payment_results)
 end
 
@@ -54,7 +58,7 @@ get("/square_root/results") do
 
   @the_result = Math.sqrt(@the_num)
 
-  erb(:square_results)
+  erb(:root_results)
 end
 
 get("/square/new") do
